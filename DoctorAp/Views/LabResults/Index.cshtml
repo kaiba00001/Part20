@@ -1,0 +1,94 @@
+﻿@model IEnumerable<DoctorAp.Models.LabResult>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<!-- Create Lab Result form -->
+<h2>Create New Lab Result</h2>
+<form asp-action="Create">
+    <label for="id">Patient Id:</label>
+    <input type="text" id="id" name="id">
+
+    <label for="patientName">Patient Name:</label>
+    <input type="text" id="patientName" name="patientName">
+
+    <label for="testType">Test Type:</label>
+    <select id="testType" name="testType">
+        <option value="Blood Test">Blood Test</option>
+        <option value="Urine Test">Urine Test</option>
+        <option value="Cholesterol Test">Cholesterol Test</option>
+        <option value="Thyroid Test">Thyroid Test</option>
+    </select>
+
+    <label for="result">Result:</label>
+    <select id="result" name="result">
+        <option value="120 mg/dL">120 mg/dL</option>
+        <option value="Positive">Positive</option>
+        <option value="180 mg/dL">180 mg/dL</option>
+        <option value="2.5 μIU/mL">2.5 μIU/mL</option>
+    </select>
+
+    <label for="referenceRange">Reference Range:</label>
+    <select id="referenceRange" name="referenceRange">
+        <option value="70-100 mg/dL">70-100 mg/dL</option>
+        <option value="N/A">N/A</option>
+        <option value="Less than 200 mg/dL">Less than 200 mg/dL</option>
+        <option value="0.4-4.0 μIU/mL">0.4-4.0 μIU/mL</option>
+    </select>
+
+    <input type="submit" value="Create">
+</form>
+
+<!-- Lab Results table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Result)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReferenceRange)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Result)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReferenceRange)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

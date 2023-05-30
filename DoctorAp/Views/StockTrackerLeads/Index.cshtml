@@ -1,0 +1,102 @@
+﻿@model IEnumerable<DoctorAp.Models.StockTrackerLead>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    /* Table styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        color: #333;
+        font-weight: bold;
+    }
+
+    /* Action links */
+    .actions a {
+        display: inline-block;
+        padding: 6px 10px;
+        background-color: #4caf50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+        .actions a:hover {
+            background-color: #45a049;
+        }
+
+    /* Create New button */
+    .create-button {
+        margin-bottom: 20px;
+    }
+
+        .create-button a {
+            display: inline-block;
+            padding: 10px 16px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+            .create-button a:hover {
+                background-color: #0056b3;
+            }
+
+    /* Heading */
+    h1 {
+        margin-top: 0;
+    }
+</style>
+
+<h1>Stock Tracker</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Item)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td class="actions">
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
